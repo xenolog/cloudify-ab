@@ -41,6 +41,7 @@ node_types:
   instance:
     derived_from: cloudify.openstack.nodes.Server
     properties:
+      openstack_config: *openstack_config
       agent_config:
         default:
           user:
@@ -71,9 +72,7 @@ node_types:
 
 node_templates:
   http_server:
-    type: cloudify.openstack.nodes.Server
-    properties:
-      openstack_config: *openstack_config
+    type: instance
     # properties:
     #   resource_config:
     #     groups:
