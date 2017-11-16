@@ -64,10 +64,10 @@ node_types:
             get_input: image
           flavor:
             get_input: flavor
-          userdata:
-            get_attribute:
-              - cloudify_host_cloud_config
-              - cloud_config
+          # userdata:
+          #   get_attribute:
+          #     - cloudify_host_cloud_config
+          #     - cloud_config
 
 node_templates:
   http_server:
