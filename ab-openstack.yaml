@@ -51,8 +51,9 @@ node_types:
           port: 22
           key:
             get_property:
-              - keypair
-              - ssh_pvt_key
+              - ssh_access
+              - private_key_path
+              #- ssh_pvt_key
       # cloudify_agent:
       #   default:
       #     agent_key_path:
