@@ -28,6 +28,8 @@ inputs:
     default: { get_secret: ssh_pub_key }
   ssh_pvt_key:
     default: { get_secret: ssh_pvt_key }
+  ssh_keyset_name:
+    default: { get_secret: ssh_keyset_name }
 
 dsl_definitions:
   openstack_config: &openstack_config
@@ -75,7 +77,6 @@ node_templates:
     properties:
       openstack_config: *openstack_config
 
-    # properties:
     #   resource_config:
     #     groups:
     #       - wheel
@@ -88,3 +89,15 @@ node_templates:
     #           - { get_secret: agent_key_public }
     #     runcmd:
     #       - sudo service ssh stop
+    relationships:
+      #- type: cloudify.relationships.depends_on
+      - type: cloudify.relationships.server_connected_to_keypair
+        target: ssh_access
+
+  ssh_access:
+    type: cloudify.openstack.nodes.KeyPair
+    properties:
+      openstack_config: *openstack_config
+      resource_id: { get_input: ssh_keyset_name }
+      use_external_resource: true
+      private_key_path: { get_input: ssh_pub_key }
