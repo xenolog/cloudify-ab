@@ -102,7 +102,7 @@ node_templates:
       openstack_config: *openstack_config
       resource_id:
         get_input: ssh_keyset_name
-      use_external_resource: true
+      #use_external_resource: true
       private_key_path:
         get_input: ssh_pvt_key
       #private_key_path: { get_input: ssh_pub_key }
