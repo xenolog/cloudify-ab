@@ -45,8 +45,8 @@ node_types:
         default:
           user:
             get_input: ubuntu_user
-          # install_method: remote
-          install_method: init_script
+          install_method: remote
+          # install_method: init_script
           port: 22
           key:
             get_property:
@@ -81,8 +81,8 @@ node_templates:
     type: cloudify.openstack.nodes.KeyPair
     properties:
       openstack_config: *openstack_config
+      use_external_resource: true
       resource_id:
         get_input: ssh_keyset_name
-      use_external_resource: true
       private_key_path:
         get_input: ssh_pvt_key
