@@ -46,14 +46,11 @@ node_types:
           user:
             get_input: ubuntu_user
           install_method: remote
-          # install_method: init_script
           port: 22
           key:
             get_property:
               - ssh_access
               - private_key_path
-          # extra:
-          #   distro_codename:
       management_network_name:
         default:
           get_input: mgmt_network_name
@@ -67,6 +64,10 @@ node_types:
           #   get_attribute:
           #     - cloudify_host_cloud_config
           #     - cloud_config
+    interfaces:
+      cloudify.interfaces.lifecycle:
+        create:
+          implementation: scripts/install_python27.sh
 
 node_templates:
   http_server:
@@ -81,7 +82,7 @@ node_templates:
     type: cloudify.openstack.nodes.KeyPair
     properties:
       openstack_config: *openstack_config
-      use_external_resource: true
+      # use_external_resource: true
       resource_id:
         get_input: ssh_keyset_name
       private_key_path:
