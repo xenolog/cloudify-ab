@@ -50,13 +50,15 @@ node_types:
           install_method: remote
           port: 22
           key:
-            get_input: ssh_pvt_key
-      cloudify_agent:
-        default:
-          agent_key_path:
-            get_input: ssh_pvt_key
-          user:
-            get_input: ubuntu_user
+            get_property:
+              - keypair
+              - ssh_pvt_key
+      # cloudify_agent:
+      #   default:
+      #     agent_key_path:
+      #       get_input: ssh_pvt_key
+      #     user:
+      #       get_input: ubuntu_user
       management_network_name:
         default:
           get_input: mgmt_network_name
@@ -98,5 +100,5 @@ node_templates:
     properties:
       openstack_config: *openstack_config
       resource_id: { get_input: ssh_keyset_name }
-      #use_external_resource: true
-      private_key_path: { get_input: ssh_pub_key }
+      use_external_resource: true
+      #private_key_path: { get_input: ssh_pub_key }
