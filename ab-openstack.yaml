@@ -90,8 +90,7 @@ node_templates:
     #     runcmd:
     #       - sudo service ssh stop
     relationships:
-      #- type: cloudify.relationships.depends_on
-      - type: cloudify.relationships.server_connected_to_keypair
+      - type: cloudify.openstack.server_connected_to_keypair
         target: ssh_access
 
   ssh_access:
