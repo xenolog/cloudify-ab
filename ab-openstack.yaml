@@ -24,8 +24,6 @@ inputs:
     default: { get_secret: keystone_url }
   region:
     default: { get_secret: region }
-  ssh_pub_key:
-    default: { get_secret: ssh_pub_key }
   ssh_pvt_key:
     default: { get_secret: ssh_pvt_key }
   ssh_keyset_name:
@@ -47,19 +45,15 @@ node_types:
         default:
           user:
             get_input: ubuntu_user
-          install_method: remote
+          # install_method: remote
+          install_method: init_script
           port: 22
           key:
             get_property:
               - ssh_access
               - private_key_path
-              #- ssh_pvt_key
-      # cloudify_agent:
-      #   default:
-      #     agent_key_path:
-      #       get_input: ssh_pvt_key
-      #     user:
-      #       get_input: ubuntu_user
+          # extra:
+          #   distro_codename:
       management_network_name:
         default:
           get_input: mgmt_network_name
@@ -79,19 +73,6 @@ node_templates:
     type: instance
     properties:
       openstack_config: *openstack_config
-
-    #   resource_config:
-    #     groups:
-    #       - wheel
-    #     users:
-    #       - name: { get_input: agent_user }
-    #         primary-group: wheel
-    #         shell: /bin/bash
-    #         sudo: ['ALL=(ALL) NOPASSWD:ALL']
-    #         ssh-authorized-keys:
-    #           - { get_secret: agent_key_public }
-    #     runcmd:
-    #       - sudo service ssh stop
     relationships:
       - type: cloudify.openstack.server_connected_to_keypair
         target: ssh_access
@@ -102,7 +83,5 @@ node_templates:
       openstack_config: *openstack_config
       resource_id:
         get_input: ssh_keyset_name
-      #use_external_resource: true
       private_key_path:
         get_input: ssh_pvt_key
-      #private_key_path: { get_input: ssh_pub_key }
