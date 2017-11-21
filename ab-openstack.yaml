@@ -41,6 +41,10 @@ node_types:
   instance:
     derived_from: cloudify.openstack.nodes.Server
     properties:
+      resource_config:
+        packages:
+          - [python2.7]
+          - [python-pip]
       agent_config:
         default:
           user:
@@ -64,10 +68,10 @@ node_types:
           #   get_attribute:
           #     - cloudify_host_cloud_config
           #     - cloud_config
-    interfaces:
-      cloudify.interfaces.lifecycle:
-        create:
-          implementation: scripts/install_python27.sh
+    # interfaces:
+    #   cloudify.interfaces.lifecycle:
+    #     create:
+    #       implementation: scripts/install_python27.sh
 
 node_templates:
   http_server:
