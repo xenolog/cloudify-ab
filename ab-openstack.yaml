@@ -42,9 +42,10 @@ node_types:
     derived_from: cloudify.openstack.nodes.Server
     properties:
       resource_config:
-        packages:
-          - [python2.7]
-          - [python-pip]
+        default:
+          packages:
+            - [python2.7]
+            - [python-pip]
       agent_config:
         default:
           user:
