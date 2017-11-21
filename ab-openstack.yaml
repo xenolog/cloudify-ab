@@ -82,7 +82,7 @@ node_templates:
     type: cloudify.openstack.nodes.KeyPair
     properties:
       openstack_config: *openstack_config
-      # use_external_resource: true
+      use_external_resource: true
       # resource_id:
       #   get_input: ssh_keyset_name
       private_key_path:
