@@ -4,11 +4,10 @@ imports:
   - http://www.getcloudify.org/spec/cloudify/4.1.1/types.yaml
   - plugins/openstack.yaml
   - plugins/fabric.yaml
+
 #   - http://www.getcloudify.org/spec/openstack-plugin/2.2.0/plugin.yaml
 #   - http://www.getcloudify.org/spec/fabric-plugin/1.5/plugin.yaml
 # #  - https://raw.githubusercontent.com/cloudify-incubator/cloudify-utilities-plugin/1.2.5/plugin.yaml
-
-
 
 inputs:
   ubuntu_user:
