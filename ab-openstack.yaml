@@ -1,22 +1,14 @@
 tosca_definitions_version: cloudify_dsl_1_3
 
 # imports:
-#   - http://www.getcloudify.org/spec/cloudify/4.1.1/types.yaml
+  - http://www.getcloudify.org/spec/cloudify/4.1.1/types.yaml
+  - plugins/openstack.yaml
+  - plugins/fabric.yaml
 #   - http://www.getcloudify.org/spec/openstack-plugin/2.2.0/plugin.yaml
 #   - http://www.getcloudify.org/spec/fabric-plugin/1.5/plugin.yaml
 # #  - https://raw.githubusercontent.com/cloudify-incubator/cloudify-utilities-plugin/1.2.5/plugin.yaml
 
-plugins:
-  fabric:
-    executor: central_deployment_agent
-    source: https://github.com/cloudify-cosmo/cloudify-fabric-plugin/archive/1.5.zip
-    package_name: cloudify-fabric-plugin
-    package_version: '1.5'
-  openstack:
-    executor: central_deployment_agent
-    source: https://github.com/cloudify-cosmo/cloudify-openstack-plugin/archive/2.3.0.zip
-    package_name: cloudify-openstack-plugin
-    package_version: '2.3.0'
+
 
 inputs:
   ubuntu_user:
