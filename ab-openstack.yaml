@@ -74,21 +74,20 @@ node_templates:
     relationships:
       - type: cloudify.openstack.server_connected_to_keypair
         target: ssh_access
-    # interfaces:
-    #   cloudify.interfaces.lifecycle:
-    #     start:
-    #       implementation: fabric.fabric_plugin.tasks.run_commands
-    #       inputs:
-    #         commands:
-    #           - echo "xxx" >> /tmp/qqq.qqq
-    #           - apt install -y python2.7
-    #           - ln -s /usr/bin/python2.7 /usr/bin/python
-    #         fabric_env:
-    #           # host_string: { get_attribute: [SELF, ip] }
-    #           host_string: { get_properties: [SELF, ip] }
-    #           user: { get_input: ubuntu_user}
-    #           key_filename: { get_input: ssh_pvt_key }
-    #         use_sudo: true
+    interfaces:
+      cloudify.interfaces.lifecycle:
+        establish:
+          implementation: fabric.fabric_plugin.tasks.run_commands
+          inputs:
+            commands:
+              - echo "xxx" >> /tmp/qqq.qqq
+              - apt install -y python2.7
+              - ln -s /usr/bin/python2.7 /usr/bin/python
+            fabric_env:
+              host_string: { get_attribute: [SELF, ip] }
+              # user: { get_input: ubuntu_user}
+              key_filename: { get_input: ssh_pvt_key }
+            use_sudo: true
 
   ssh_access:
     type: cloudify.openstack.nodes.KeyPair
@@ -102,11 +101,8 @@ node_templates:
         get_input: ssh_pvt_key
 
 outputs:
-  http_endpoint_1:
-      description: ip attribute of the web application
-      value:
-          ip: { get_attribute: [http_server, ip] }
-  http_endpoint_2:
-      description: ip property of the web application
-      value:
-          ip: { get_properties: [http_server, ip] }
+  internal_ipaddr:
+    description: internal ip address of web server
+    value:
+      ip: { get_attribute: [http_server, ip] }
+
