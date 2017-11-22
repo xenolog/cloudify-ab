@@ -84,6 +84,7 @@ node_templates:
             - echo "xxx" >> /tmp/qqq.qqq
             - apt install -y python2.7
             - ln -s /usr/bin/python2.7 /usr/bin/python
+          use_sudo: true
 
   ssh_access:
     type: cloudify.openstack.nodes.KeyPair
