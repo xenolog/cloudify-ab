@@ -88,9 +88,9 @@ node_templates:
     type: cloudify.openstack.nodes.KeyPair
     properties:
       openstack_config: *openstack_config
-      use_external_resource: true
-      create_if_missing: true
-      resource_id:
-        get_input: ssh_keyset_name
+      # use_external_resource: true
+      # create_if_missing: true
+      # resource_id:
+      #   get_input: ssh_keyset_name
       private_key_path:
         get_input: ssh_pvt_key
