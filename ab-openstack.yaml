@@ -84,7 +84,8 @@ node_templates:
     #           - apt install -y python2.7
     #           - ln -s /usr/bin/python2.7 /usr/bin/python
     #         fabric_env:
-    #           host_string: { get_attribute: [SELF, ip] }
+    #           # host_string: { get_attribute: [SELF, ip] }
+    #           host_string: { get_properties: [SELF, ip] }
     #           user: { get_input: ubuntu_user}
     #           key_filename: { get_input: ssh_pvt_key }
     #         use_sudo: true
@@ -104,4 +105,5 @@ outputs:
   http_endpoint:
       description: ip of the web application
       value:
-          ip: { get_attribute: [http_server, ip] }
+          ipa: { get_attribute: [http_server, ip] }
+          ipp: { get_properties: [http_server, ip] }
