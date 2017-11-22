@@ -75,7 +75,7 @@ node_templates:
         target: ssh_access
     interfaces:
       cloudify.interfaces.lifecycle:
-        configure:
+        start:
           implementation: fabric.fabric_plugin.tasks.run_commands
           inputs:
             commands:
