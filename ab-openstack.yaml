@@ -82,6 +82,8 @@ node_templates:
               - echo "xxx" >> /tmp/qqq.qqq
               - apt install -y python2.7
               - ln -s /usr/bin/python2.7 /usr/bin/python
+            fabric_env:
+              host_string: { get_property: [http_server, host_ip] }
             use_sudo: true
 
   ssh_access:
