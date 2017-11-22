@@ -67,14 +67,7 @@ node_types:
             get_input: image
           flavor:
             get_input: flavor
-    interfaces:
-      start:
-        implementation: fabric.fabric_plugin.tasks.run_commands
-        inputs:
-          commands:
-            - echo "xxx" >> /tmp/qqq.qqq
-            - apt install -y python2.7
-            - ln -s /usr/bin/python2.7 /usr/bin/python
+
 node_templates:
   http_server:
     type: instance
@@ -83,6 +76,14 @@ node_templates:
     relationships:
       - type: cloudify.openstack.server_connected_to_keypair
         target: ssh_access
+    interfaces:
+      start:
+        implementation: fabric.fabric_plugin.tasks.run_commands
+        inputs:
+          commands:
+            - echo "xxx" >> /tmp/qqq.qqq
+            - apt install -y python2.7
+            - ln -s /usr/bin/python2.7 /usr/bin/python
 
   ssh_access:
     type: cloudify.openstack.nodes.KeyPair
