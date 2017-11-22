@@ -5,6 +5,18 @@ imports:
   - http://www.getcloudify.org/spec/openstack-plugin/2.2.0/plugin.yaml
 #  - https://raw.githubusercontent.com/cloudify-incubator/cloudify-utilities-plugin/1.2.5/plugin.yaml
 
+plugins:
+  fabric:
+    executor: central_deployment_agent
+    source: https://github.com/cloudify-cosmo/cloudify-fabric-plugin/archive/1.5.zip
+    package_name: cloudify-fabric-plugin
+    package_version: '1.5'
+  openstack:
+    executor: central_deployment_agent
+    source: https://github.com/cloudify-cosmo/cloudify-openstack-plugin/archive/2.2.0.zip
+    package_name: cloudify-openstack-plugin
+    package_version: '2.2.0'
+
 inputs:
   ubuntu_user:
     default: { get_secret: ubuntu_xenial_user }
@@ -45,7 +57,8 @@ node_types:
       #   default:
       #     packages:
       #       - [python2.7]
-      #       - [python-pip]
+      #     runcmd:
+      #       - 'ln -s /usr/bin/python2.7 /usr/bin/python'
       agent_config:
         default:
           user:
@@ -70,10 +83,16 @@ node_types:
           #     - cloudify_host_cloud_config
           #     - cloud_config
     interfaces:
-      cloudify.interfaces.lifecycle:
-        start:
-          implementation: scripts/install_python27.sh
-
+    #   cloudify.interfaces.lifecycle:
+    #     start:
+    #       implementation: scripts/install_python27.sh
+      start:
+        implementation: fabric.fabric_plugin.tasks.run_commands
+        inputs:
+          commands:
+            - echo "xxx" >> /tmp/qqq.qqq
+            - apt install -y python2.7
+            - ln -s /usr/bin/python2.7 /usr/bin/python
 node_templates:
   http_server:
     type: instance
@@ -88,6 +107,7 @@ node_templates:
     properties:
       openstack_config: *openstack_config
       # use_external_resource: true
+      # create_if_missing: true
       # resource_id:
       #   get_input: ssh_keyset_name
       private_key_path:
