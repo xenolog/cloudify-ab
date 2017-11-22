@@ -14,9 +14,9 @@ plugins:
     package_version: '1.5'
   openstack:
     executor: central_deployment_agent
-    source: https://github.com/cloudify-cosmo/cloudify-openstack-plugin/archive/2.2.0.zip
+    source: https://github.com/cloudify-cosmo/cloudify-openstack-plugin/archive/2.3.0.zip
     package_name: cloudify-openstack-plugin
-    package_version: '2.2.0'
+    package_version: '2.3.0'
 
 inputs:
   ubuntu_user:
