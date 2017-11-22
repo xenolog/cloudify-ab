@@ -10,6 +10,10 @@ plugins:
     # source: https://github.com/cloudify-cosmo/cloudify-openstack-plugin/archive/2.3.0.zip
     # package_name: cloudify-openstack-plugin
     # package_version: '2.3.0'
+  nova_plugin:
+    executor: central_deployment_agent
+    source: cloudify-fabric-plugin
+    install: false
 
 node_types:
   cloudify.openstack.nodes.Server:
