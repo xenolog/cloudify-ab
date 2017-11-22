@@ -73,16 +73,16 @@ node_templates:
     relationships:
       - type: cloudify.openstack.server_connected_to_keypair
         target: ssh_access
-    # interfaces:
-    #   cloudify.interfaces.lifecycle:
-    #     configure:
-    #       implementation: fabric.fabric_plugin.tasks.run_commands
-    #       inputs:
-    #         commands:
-    #           - echo "xxx" >> /tmp/qqq.qqq
-    #           - apt install -y python2.7
-    #           - ln -s /usr/bin/python2.7 /usr/bin/python
-    #         use_sudo: true
+    interfaces:
+      cloudify.interfaces.lifecycle:
+        configure:
+          implementation: fabric.fabric_plugin.tasks.run_commands
+          inputs:
+            commands:
+              - echo "xxx" >> /tmp/qqq.qqq
+              - apt install -y python2.7
+              - ln -s /usr/bin/python2.7 /usr/bin/python
+            use_sudo: true
 
   ssh_access:
     type: cloudify.openstack.nodes.KeyPair
