@@ -49,7 +49,8 @@ node_types:
         default:
           user:
             get_input: ubuntu_user
-          install_method: remote
+          #install_method: remote
+          install_method: none
           port: 22
           key:
             get_property:
