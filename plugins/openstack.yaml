@@ -5,7 +5,7 @@
 plugins:
   openstack:
     executor: central_deployment_agent
-    source: plugins/cloudify-fabric-plugin
+    source: cloudify-fabric-plugin
     install: false
     # source: https://github.com/cloudify-cosmo/cloudify-openstack-plugin/archive/2.3.0.zip
     # package_name: cloudify-openstack-plugin
