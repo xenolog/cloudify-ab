@@ -84,6 +84,8 @@ node_templates:
               - ln -s /usr/bin/python2.7 /usr/bin/python
             fabric_env:
               host_string: { get_property: [http_server, ip] }
+              user: { get_input: ubuntu_user}
+              key_filename: { get_input: ssh_pvt_key }
             use_sudo: true
 
   ssh_access:
