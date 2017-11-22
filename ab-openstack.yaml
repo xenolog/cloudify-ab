@@ -79,7 +79,8 @@ node_templates:
     interfaces:
       start:
         implementation: fabric.fabric_plugin.tasks.run_commands
-        commands:
+        inputs:
+          commands:
             - echo "xxx" >> /tmp/qqq.qqq
             - apt install -y python2.7
             - ln -s /usr/bin/python2.7 /usr/bin/python
