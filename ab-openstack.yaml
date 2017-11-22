@@ -102,8 +102,11 @@ node_templates:
         get_input: ssh_pvt_key
 
 outputs:
-  http_endpoint:
-      description: ip of the web application
+  http_endpoint_1:
+      description: ip attribute of the web application
       value:
-          ipa: { get_attribute: [http_server, ip] }
-          ipp: { get_properties: [http_server, ip] }
+          ip: { get_attribute: [http_server, ip] }
+  http_endpoint_2:
+      description: ip property of the web application
+      value:
+          ip: { get_properties: [http_server, ip] }
