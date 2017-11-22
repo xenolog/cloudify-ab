@@ -99,7 +99,7 @@ node_templates:
       private_key_path:
         get_input: ssh_pvt_key
 
-output:
+outputs:
   http_endpoint:
       description: ip of the web application
       value:
